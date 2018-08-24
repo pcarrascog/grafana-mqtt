@@ -1,0 +1,65 @@
+---
+# Performance Framework for Hites
+version: '3.2'
+services:
+  influxdb:
+    image: "influxdb"
+    hostname: "influxdb"
+    ports:
+      - "8086:8086"
+      - "8083:8083"
+    environment:
+      - "INFLUXDB_DB=stem"
+    volumes:
+      - "influxdb:/var/lib/influxdb"
+    networks:
+      - "stem"
+    deploy:
+      placement:
+        constraints:
+          - "node.role == manager"
+  grafana:
+    image: "grafana/grafana"
+    hostname: "grafana"
+    ports:
+      - "80:3000"
+        #    environment:
+        #- "GF_SERVER_ROOT_URL=http://stem.paulocarrasco.cl"
+    volumes:
+      - "grafana:/var/lib/grafana"
+    networks:
+      - "stem"
+    deploy:
+      placement:
+        constraints:
+          - "node.role == manager"
+  telegraf:
+    image: "joabgonzalez/telegraf"
+    hostname: "telegraf-{{.Task.Slot}}"
+    environment:
+      INFLUXDB_HOST: "influxdb"
+    depends_on:
+      - "influxdb"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/lib/docker/volumes:/var/lib/docker/volumes"
+    networks:
+      - "stem"
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: "0.0625"
+          memory: "64M"
+networks:
+  stem:
+    driver: overlay
+    attachable: true
+volumes:
+  influxdb:
+    external: true
+  grafana:
+    external: true
+
+
+

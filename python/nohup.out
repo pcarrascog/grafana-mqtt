@@ -1,0 +1,30 @@
+('connecting to broker ', 'localhost')
+subscribing 
+('received message =', '2.0.0')
+publishing 
+('received message =', '2C:3A:E8:42:3F:E0')
+('received message =', 'Test Device')
+('received message =', '100.100.100.101')
+('received message =', '60')
+('received message =', '100')
+('received message =', '11134')
+('connecting to broker ', 'localhost')
+subscribing 
+('received message =', '2.0.0')
+publishing 
+('received message =', '2C:3A:E8:42:3F:E0')
+('received message =', 'Test Device')
+('received message =', '100.100.100.101')
+('received message =', '60')
+('received message =', '100')
+('received message =', '11134')
+('connecting to broker ', 'localhost')
+subscribing 
+('received message =', '2.0.0')
+publishing 
+('received message =', '2C:3A:E8:42:3F:E0')
+('received message =', 'Test Device')
+('received message =', '100.100.100.101')
+('received message =', '60')
+('received message =', '100')
+('received message =', '11134')
